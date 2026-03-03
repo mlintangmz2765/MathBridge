@@ -1,83 +1,104 @@
 :root {
-    --gemini-math-btn-color: #000000;
-    --gemini-math-btn-hover-color: #333333;
-    --gemini-math-border-color: #dadce0;
+    --math-copy-btn-bg: #343541;
+    --math-copy-btn-text: #ffffff;
+    --math-copy-btn-hover-bg: #40414f;
+    --math-copy-border: #dadce0;
+    --math-copy-shadow: rgba(0, 0, 0, 0.2);
 }
 
-body.dark-theme {
-    --gemini-math-btn-color: #ffffff;
-    --gemini-math-btn-hover-color: #cccccc;
-    --gemini-math-border-color: #444746;
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme='light']) {
+        --math-copy-btn-bg: #40414f;
+        --math-copy-btn-text: #ffffff;
+        --math-copy-btn-hover-bg: #4d4d5e;
+        --math-copy-border: #5f6368;
+        --math-copy-shadow: rgba(0, 0, 0, 0.5);
+    }
 }
 
-.gemini-math-copy-btn {
+[data-theme='dark'] :root,
+body.dark-theme,
+.dark-mode,
+.dark {
+    --math-copy-btn-bg: #40414f;
+    --math-copy-btn-text: #ffffff;
+    --math-copy-btn-hover-bg: #4d4d5e;
+    --math-copy-border: #5f6368;
+    --math-copy-shadow: rgba(0, 0, 0, 0.5);
+}
+
+.formula-copy-btn {
     position: absolute;
-    top: 4px !important;
-    right: 4px !important;
-    left: auto !important;
-    transform: none !important;
-    background-color: transparent;
-    border: none;
+    top: -4px !important;
+    right: 0 !important;
+    transform: translateY(-100%);
+    background-color: var(--math-copy-btn-bg) !important;
+    color: var(--math-copy-btn-text) !important;
+    border: 1px solid var(--math-copy-border) !important;
     border-radius: 4px;
-    padding: 2px 8px;
+    padding: 6px 12px;
     font-size: 11px;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    color: var(--gemini-math-btn-color);
+    font-weight: 500;
+    font-family: system-ui, -apple-system, sans-serif;
     cursor: pointer;
     display: none;
-    z-index: 2000;
+    z-index: 10000;
     transition: all 0.2s ease;
     white-space: nowrap;
     width: max-content;
-    pointer-events: none;
+    pointer-events: auto;
+    box-shadow: 0 1px 3px var(--math-copy-shadow);
 }
 
-.math-block.has-copy-btn {
+.has-copy-btn {
+    position: relative !important;
+    overflow: visible !important;
+}
+
+.has-copy-btn:hover {
+    outline: 1px solid var(--math-copy-border) !important;
+    border-radius: 4px;
+    cursor: pointer !important;
+    background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+[data-theme='dark'] .has-copy-btn:hover,
+body.dark-theme .has-copy-btn:hover,
+.dark .has-copy-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+.has-copy-btn:hover>.formula-copy-btn {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.formula-copy-btn:hover {
+    background-color: var(--math-copy-btn-hover-bg) !important;
+    transform: translateY(calc(-100% - 2px));
+    box-shadow: 0 4px 6px var(--math-copy-shadow);
+}
+
+
+
+.math-block.has-copy-btn,
+.katex-display.has-copy-btn {
     display: block !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    z-index: 100;
-    padding-top: 32px !important;
-    margin-top: 10px !important;
+    padding: 12px 0 !important;
+    margin-top: 36px !important;
+    min-height: 48px;
+    overflow: visible !important;
 }
 
-.math-inline.has-copy-btn {
-    z-index: 100;
+.formula-copy-btn.copied {
+    background-color: #0b9d58 !important;
+    border-color: #0b9d58 !important;
 }
 
-.gemini-math-copy-btn:hover {
-    background-color: transparent;
-    color: var(--gemini-math-btn-hover-color);
-}
-
-.gemini-math-copy-btn.copied {
-    background-color: #5cb85c;
-    color: #ffffff;
-    padding: 4px 8px;
-    border-radius: 4px;
-}
-
-.gemini-math-copy-btn.error {
-    background-color: #d9534f;
-    color: #ffffff;
-    padding: 4px 8px;
-    border-radius: 4px;
-}
-
-.math-block:hover,
-.math-inline:hover {
-    background-color: transparent !important;
-    outline: 1px solid var(--gemini-math-border-color);
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-.math-block:hover .gemini-math-copy-btn,
-.math-inline:hover .gemini-math-copy-btn {
-    display: inline-block;
-}
-
-.math-block .gemini-math-copy-btn {
-    top: 4px !important;
-    right: 4px !important;
+.formula-copy-btn.error {
+    background-color: #d93025 !important;
+    border-color: #d93025 !important;
 }

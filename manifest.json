@@ -1,23 +1,40 @@
 {
     "manifest_version": 3,
-    "name": "Gemini Formula Copier",
-    "version": "1.0",
-    "description": "Easily copy mathematical formulas from Google Gemini directly into Microsoft Word without losing their formatting.",
+    "name": "MathBridge - AI Formula Copier",
+    "short_name": "MathBridge",
+    "version": "1.0.0",
+    "version_name": "1.0.0 Stable",
+    "description": "Seamlessly copy math formulas from Gemini, ChatGPT, DeepSeek, Claude, and Perplexity directly to Microsoft Word.",
     "icons": {
         "16": "icon16.png",
         "48": "icon48.png",
         "128": "icon128.png"
     },
     "permissions": [
-        "clipboardWrite"
+        "clipboardWrite",
+        "storage"
     ],
+    "action": {
+        "default_popup": "popup.html",
+        "default_title": "MathBridge Settings"
+    },
     "host_permissions": [
-        "https://gemini.google.com/*"
+        "https://gemini.google.com/*",
+        "https://*.deepseek.com/*",
+        "https://www.perplexity.ai/*",
+        "https://perplexity.ai/*",
+        "https://chatgpt.com/*",
+        "https://claude.ai/*"
     ],
     "content_scripts": [
         {
             "matches": [
-                "https://gemini.google.com/*"
+                "https://gemini.google.com/*",
+                "https://*.deepseek.com/*",
+                "https://www.perplexity.ai/*",
+                "https://perplexity.ai/*",
+                "https://chatgpt.com/*",
+                "https://claude.ai/*"
             ],
             "js": [
                 "katex.min.js",

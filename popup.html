@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MathBridge Settings</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --text-primary: #202124;
+            --text-secondary: #5f6368;
+            --border-color: #dadce0;
+            --hover-bg: #f8f9fa;
+            --accent-color: #1a73e8;
+        }
+
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --bg-color: #202124;
+                --text-primary: #e8eaed;
+                --text-secondary: #9aa0a6;
+                --border-color: #5f6368;
+                --hover-bg: #303134;
+                --accent-color: #8ab4f8;
+            }
+        }
+
+        body {
+            width: 280px;
+            margin: 0;
+            padding: 16px;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .header img {
+            width: 32px;
+            height: 32px;
+        }
+
+        .header h1 {
+            font-size: 18px;
+            margin: 0;
+            font-weight: 600;
+        }
+
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #5f6368;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .format-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .format-option {
+            display: flex;
+            align-items: center;
+            padding: 12px;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+        }
+
+        .format-option:hover {
+            background-color: #f8f9fa;
+            border-color: #bdc1c6;
+        }
+
+        .format-option.selected {
+            border-color: #0b9d58;
+            background-color: #e6f4ea;
+        }
+
+        .format-option input {
+            margin: 0 12px 0 0;
+            cursor: pointer;
+            width: 18px;
+            height: 18px;
+            accent-color: #0b9d58;
+            pointer-events: none;
+        }
+
+        .format-info {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .format-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 2px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .format-desc {
+            font-size: 11px;
+            color: #5f6368;
+        }
+
+        .saved-badge {
+            margin-top: 16px;
+            font-size: 12px;
+            color: #0b9d58;
+            text-align: center;
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            background: #e6f4ea;
+            padding: 4px 8px;
+            border-radius: 4px;
+        }
+
+        .saved-badge.show {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <img src="icon48.png" alt="Logo">
+        <h1>MathBridge</h1>
+    </div>
+
+    <div class="section-title">Preferred Format</div>
+
+    <div class="format-list">
+        <label class="format-option" id="opt-mathml">
+            <input type="radio" name="format" value="mathml">
+            <div class="format-info">
+                <span class="format-title">MathML (MS Word)</span>
+                <span class="format-desc">Best for Word, WPS, LibreOffice</span>
+            </div>
+        </label>
+
+        <label class="format-option" id="opt-plain">
+            <input type="radio" name="format" value="plain">
+            <div class="format-info">
+                <span class="format-title">Plain Text</span>
+                <span class="format-desc">Unicode text for Notepad/WhatsApp</span>
+            </div>
+        </label>
+
+        <label class="format-option" id="opt-latex">
+            <input type="radio" name="format" value="latex">
+            <div class="format-info">
+                <span class="format-title">LaTeX Raw</span>
+                <span class="format-desc">Raw code for technical editors</span>
+            </div>
+        </label>
+
+        <label class="format-option" id="opt-image">
+            <input type="radio" name="format" value="image">
+            <div class="format-info">
+                <span class="format-title">Image (PNG)</span>
+                <span class="format-desc">Transparent image for Social Media</span>
+            </div>
+        </label>
+    </div>
+
+    <div id="status" class="saved-badge">Selection Saved!</div>
+
+    <script src="popup.js"></script>
+</body>
+
+</html>
