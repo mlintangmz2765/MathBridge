@@ -1,13 +1,13 @@
 :root {
-    --gemini-math-btn-color: #3c4043;
-    --gemini-math-btn-hover-color: #1a1a1a;
+    --gemini-math-btn-color: #000000;
+    --gemini-math-btn-hover-color: #333333;
     --gemini-math-border-color: #dadce0;
 }
 
 body.dark-theme {
-    --gemini-math-btn-color: #e8eaed;
-    --gemini-math-btn-hover-color: #ffffff;
-    --gemini-math-border-color: #5f6368;
+    --gemini-math-btn-color: #ffffff;
+    --gemini-math-btn-hover-color: #cccccc;
+    --gemini-math-border-color: #444746;
 }
 
 .gemini-math-copy-btn {
