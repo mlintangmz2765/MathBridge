@@ -166,8 +166,6 @@ function copyMathML(source, isBlock, btn) {
     try {
         let rendered = katex.renderToString(source, { displayMode: isBlock, output: 'mathml' }).trim();
 
-        // Strip out the <annotation> tag. This prevents apps that evaluate HTML as fallback plaintext
-        // (like WPS Office on Linux or Google Docs) from pasting both the MathML text and the raw LaTeX side-by-side.
         rendered = rendered.replace(/<annotation[^>]*>[\s\S]*?<\/annotation>/gi, '');
 
         const html = `<html xmlns:m="http://www.w3.org/1998/Math/MathML"><body><!--StartFragment-->${rendered}<!--EndFragment--></body></html>`;
