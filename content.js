@@ -164,9 +164,14 @@ function inject() {
 
 function copyMathML(source, isBlock, btn) {
     try {
-        const rendered = katex.renderToString(source, { displayMode: isBlock, output: 'mathml' }).trim();
+        let rendered = katex.renderToString(source, { displayMode: isBlock, output: 'mathml' }).trim();
+
+        // Strip out the <annotation> tag. This prevents apps that evaluate HTML as fallback plaintext
+        // (like WPS Office on Linux or Google Docs) from pasting both the MathML text and the raw LaTeX side-by-side.
+        rendered = rendered.replace(/<annotation[^>]*>[\s\S]*?<\/annotation>/gi, '');
+
         const html = `<html xmlns:m="http://www.w3.org/1998/Math/MathML"><body><!--StartFragment-->${rendered}<!--EndFragment--></body></html>`;
-        writeToClipboard({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([rendered], { type: 'text/plain' }) }, btn);
+        writeToClipboard({ 'text/html': new Blob([html], { type: 'text/html' }), 'text/plain': new Blob([source], { type: 'text/plain' }) }, btn);
     } catch (e) { showFeedback(btn, 'Error', 'error'); }
 }
 

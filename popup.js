@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Load saved settings
     chrome.storage.sync.get({ copyFormat: 'mathml', latexDelimiter: 'none' }, (result) => {
         const format = result.copyFormat;
         const radio = document.querySelector(`input[value="${format}"]`);
