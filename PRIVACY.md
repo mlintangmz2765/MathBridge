@@ -20,7 +20,7 @@ MathBridge does not integrate with any third-party analytics trackers or adverti
 
 ## Changes to This Privacy Policy
 
-We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy in our GitHub repository. Keep an eye on our [Changelog](CHANGELOG.md) for related updates.
+We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy in our GitHub repository.
 
 ## Contact Us
 
