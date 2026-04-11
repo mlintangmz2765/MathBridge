@@ -9,7 +9,7 @@ MathBridge is a lightweight browser extension designed to bridge the gap between
 
 ## Key Features
 
-- **Automated TeX Extraction**: Detects and extracts raw LaTeX source from Gemini, ChatGPT, DeepSeek, Claude, Perplexity, and NotebookLM.
+- **Automated TeX Extraction**: Detects and extracts raw LaTeX source from Gemini, ChatGPT, DeepSeek, Claude, and Perplexity.
 - **Office Math Object Injection**: Converts formulas into MathML wrappers supported by Microsoft Word for native equation editing.
 - **Unicode Math Mapping**: Implements a recursive MathML walker to generate high-fidelity plain text for non-TeX environments (e.g., Notepad, messaging apps).
 - **High-Resolution Rendering**: Provides PNG export with transparency, utilizing a sanitized headless rendering process to ensure visual consistency across different web themes.

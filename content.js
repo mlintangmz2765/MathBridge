@@ -82,10 +82,58 @@ function copyUnicode(mathEl, source, btn) {
 }
 
 const extractKaTeX = (el) => {
-    const dataMath = el.getAttribute('data-math');
-    if (dataMath) return dataMath;
-    const anno = el.querySelector('annotation[encoding="application/x-tex"]');
-    if (anno) return anno.textContent.trim();
+    let raw = el.getAttribute('data-math') || el.getAttribute('data-latex') || el.getAttribute('data-tex');
+    if (raw) return raw;
+
+    const anno = el.querySelector('annotation[encoding="application/x-tex"]') || el.querySelector('annotation');
+    if (anno && anno.textContent) return anno.textContent.trim();
+
+    const mathEl = el.querySelector('math');
+    if (mathEl) {
+        const altText = mathEl.getAttribute('alttext');
+        if (altText) return altText.trim();
+    }
+
+    const wrapper = el.closest('[data-math], [data-latex], [data-tex]');
+    if (wrapper) {
+        raw = wrapper.getAttribute('data-math') || wrapper.getAttribute('data-latex') || wrapper.getAttribute('data-tex');
+        if (raw) return raw.trim();
+    }
+
+    try {
+        let current = el;
+        for (let i = 0; i < 5; i++) {
+            if (!current) break;
+            const key = Object.keys(current).find(k => k.startsWith('__reactProps$') || k.startsWith('__reactFiber$'));
+            if (key) {
+                const node = current[key];
+                const props = node.memoizedProps || node;
+                if (props) {
+                    if (typeof props.math === 'string') return props.math;
+                    if (typeof props.tex === 'string') return props.tex;
+                    if (typeof props.latex === 'string') return props.latex;
+                    if (typeof props.children === 'string' && props.children.trim().length > 0 && props.children.toLowerCase() !== 'click to copy') {
+                        return props.children.trim();
+                    }
+                }
+                
+                let fiber = node.return;
+                for (let j = 0; j < 3 && fiber; j++) {
+                    const fp = fiber.memoizedProps;
+                    if (fp) {
+                        if (typeof fp.math === 'string') return fp.math;
+                        if (typeof fp.tex === 'string') return fp.tex;
+                        if (typeof fp.children === 'string' && fp.children.length > 2 && fp.children.toLowerCase() !== 'click to copy') {
+                            return fp.children.trim();
+                        }
+                    }
+                    fiber = fiber.return;
+                }
+            }
+            current = current.parentElement;
+        }
+    } catch (e) {}
+
     return null;
 };
 
@@ -102,8 +150,7 @@ const CONFIG = {
     'chat.deepseek.com': { selector: MATH_SELECTORS, extract: extractKaTeX },
     'perplexity.ai': { selector: MATH_SELECTORS + ', .mjx-container, [data-testid="message-content"] math', extract: extractKaTeX },
     'chatgpt.com': { selector: MATH_SELECTORS, extract: extractKaTeX },
-    'claude.ai': { selector: MATH_SELECTORS, extract: extractKaTeX },
-    'notebooklm.google.com': { selector: MATH_SELECTORS, extract: extractKaTeX }
+    'claude.ai': { selector: MATH_SELECTORS, extract: extractKaTeX }
 };
 
 function getConfig() {
