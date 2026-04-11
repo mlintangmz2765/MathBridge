@@ -102,7 +102,8 @@ const CONFIG = {
     'chat.deepseek.com': { selector: MATH_SELECTORS, extract: extractKaTeX },
     'perplexity.ai': { selector: MATH_SELECTORS + ', .mjx-container, [data-testid="message-content"] math', extract: extractKaTeX },
     'chatgpt.com': { selector: MATH_SELECTORS, extract: extractKaTeX },
-    'claude.ai': { selector: MATH_SELECTORS, extract: extractKaTeX }
+    'claude.ai': { selector: MATH_SELECTORS, extract: extractKaTeX },
+    'notebooklm.google.com': { selector: MATH_SELECTORS, extract: extractKaTeX }
 };
 
 function getConfig() {
