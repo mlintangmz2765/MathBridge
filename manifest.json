@@ -2,8 +2,8 @@
     "manifest_version": 3,
     "name": "MathBridge - AI Formula Copier",
     "short_name": "MathBridge",
-    "version": "1.0.0",
-    "version_name": "1.0.0 Stable",
+    "version": "1.1.0",
+    "version_name": "1.1.0 Stable",
     "description": "Easily copy math formulas from Gemini, ChatGPT, Claude, Perplexity, DeepSeek, and NotebookLM to MathML (MS Word), LaTeX, Plain Text, or Image.",
     "icons": {
         "16": "icon16.png",
