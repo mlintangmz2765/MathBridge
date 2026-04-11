@@ -4,7 +4,7 @@
     "short_name": "MathBridge",
     "version": "1.1.0",
     "version_name": "1.1.0 Stable",
-    "description": "Easily copy math formulas from Gemini, ChatGPT, Claude, Perplexity, DeepSeek, and NotebookLM to MathML (MS Word), LaTeX, Plain Text, or Image.",
+    "description": "Copy math formulas from Gemini, ChatGPT, Claude, DeepSeek, Perplexity & NotebookLM to MathML, LaTeX, Plain Text, or Image.",
     "icons": {
         "16": "icon16.png",
         "48": "icon48.png",
